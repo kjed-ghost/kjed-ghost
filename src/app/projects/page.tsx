@@ -4,7 +4,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, Folder } from 'lucide-react';
 
-const ProjectCard = ({ title, description, tags, delay }: any) => (
+interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+  delay: number;
+}
+
+const ProjectCard: React.FC<Project> = ({ title, description, tags, delay }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -40,29 +47,29 @@ const ProjectCard = ({ title, description, tags, delay }: any) => (
 );
 
 export default function ProjectsPage() {
-  const projects = [
+  const projects: Project[] = [
     {
-      title: 'E-commerce Engine',
-      description: 'A high-performance custom WordPress solution with advanced filtering and AI-driven recommendations.',
-      tags: ['WordPress', 'PHP', 'WooCommerce', 'React'],
+      title: 'Stitch - Full-Stack Platform',
+      description: 'A Next-Gen full-stack platform built for scalability and performance. Featuring a modern tech stack and streamlined developer workflows.',
+      tags: ['Next.js', 'React', 'Node.js', 'PostgreSQL'],
       delay: 0.1,
     },
     {
-      title: 'AI Content Orchestrator',
-      description: 'Full-stack application integrating Google AI Studio to automate multi-channel content creation.',
-      tags: ['Next.js', 'TypeScript', 'Google AI', 'Tailwind'],
+      title: 'Google AI Studio Workflows',
+      description: 'Custom AI application integration leveraging Google AI Studio for complex task automation and content generation.',
+      tags: ['Google AI Studio', 'Python', 'LLMs', 'API Integration'],
       delay: 0.2,
     },
     {
-      title: 'Business SaaS Dashboard',
-      description: 'Comprehensive dashboard for managing enterprise workflows with real-time data visualization.',
-      tags: ['React', 'Node.js', 'PostgreSQL', 'Chart.js'],
+      title: 'Advanced WordPress Engine',
+      description: 'A high-performance custom WordPress solution with advanced filtering and AI-driven recommendations.',
+      tags: ['WordPress', 'PHP', 'WooCommerce', 'React'],
       delay: 0.3,
     },
     {
-      title: 'Portfolio Framework',
-      description: 'A sleek, performant portfolio template for creative professionals and developers.',
-      tags: ['Next.js', 'Framer Motion', 'TypeScript'],
+      title: 'Technical Copywriting Framework',
+      description: 'SEO-driven copywriting and technical documentation for high-ticket tech products.',
+      tags: ['SEO', 'Copywriting', 'Technical Writing'],
       delay: 0.4,
     },
   ];
@@ -85,7 +92,7 @@ export default function ProjectsPage() {
               transition={{ delay: 0.1 }}
               className="text-lg text-gray-400"
             >
-              A selection of my recent work, ranging from complex full-stack applications to custom WordPress solutions.
+              A selection of my recent work, including Stitch and advanced AI Studio integrations.
             </motion.p>
           </div>
           <motion.div
@@ -106,7 +113,7 @@ export default function ProjectsPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <ProjectCard key={project.title} {...project} />
           ))}
         </div>

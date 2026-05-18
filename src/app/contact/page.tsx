@@ -2,9 +2,14 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Send, MessageSquare, Briefcase, ExternalLink, Mail, Phone, MapPin } from 'lucide-react';
+import { Send, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
+import { SOCIAL_LINKS, SocialLink } from '@/lib/constants';
 
-const SocialCard = ({ name, icon: Icon, link, description, hoverColor }: any) => (
+interface SocialCardProps extends SocialLink {
+  index: number;
+}
+
+const SocialCard: React.FC<SocialCardProps> = ({ name, icon: Icon, link, description, hoverColor }) => (
   <motion.a
     href={link}
     target="_blank"
@@ -24,44 +29,6 @@ const SocialCard = ({ name, icon: Icon, link, description, hoverColor }: any) =>
 );
 
 export default function ContactPage() {
-  const socials = [
-    {
-      name: 'GitHub',
-      icon: Github,
-      link: 'https://github.com/kjed-ghost',
-      description: 'Review my code & contributions',
-      hoverColor: 'group-hover:text-white',
-    },
-    {
-      name: 'Upwork',
-      icon: Briefcase,
-      link: 'https://www.upwork.com/freelancers/your-profile',
-      description: 'Hire me for fixed/hourly projects',
-      hoverColor: 'group-hover:text-green-500',
-    },
-    {
-      name: 'Freelancer',
-      icon: Briefcase,
-      link: 'https://www.freelancer.com/u/your-profile',
-      description: 'Find me on Freelancer.com',
-      hoverColor: 'group-hover:text-blue-500',
-    },
-    {
-      name: 'Reddit',
-      icon: MessageSquare,
-      link: 'https://www.reddit.com/user/your-username',
-      description: 'Technical discussions & communities',
-      hoverColor: 'group-hover:text-orange-500',
-    },
-    {
-      name: 'Discord',
-      icon: MessageSquare,
-      link: 'https://discord.com/users/your-id',
-      description: 'Direct real-time communication',
-      hoverColor: 'group-hover:text-neon-cyan',
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-black py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,7 +63,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <div className="text-xs text-gray-500 uppercase tracking-wider">Email</div>
-                    <div className="font-medium">kaushikdanielofficial@gmail.com</div>
+                    <div className="font-medium text-sm sm:text-base">kaushikdanielofficial@gmail.com</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 group">
@@ -161,10 +128,10 @@ export default function ContactPage() {
 
         {/* Profile Links */}
         <div>
-          <h2 className="text-2xl font-bold text-center mb-12">Professional Profiles</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {socials.map((social) => (
-              <SocialCard key={social.name} {...social} />
+          <h2 className="text-2xl font-bold text-center mb-12">Professional Platforms</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {SOCIAL_LINKS.map((social, index) => (
+              <SocialCard key={social.name} {...social} index={index} />
             ))}
           </div>
         </div>

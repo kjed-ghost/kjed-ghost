@@ -4,7 +4,8 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowRight, Code2, Globe, Cpu, Github, Briefcase, MessageSquare, ExternalLink } from 'lucide-react';
+import { ArrowRight, Code2, Globe, Cpu, ExternalLink } from 'lucide-react';
+import { SOCIAL_LINKS } from '@/lib/constants';
 
 const Hero = () => {
   return (
@@ -23,10 +24,13 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-5xl md:text-7xl font-bold leading-tight neon-text-cyan">
-              Building <span className="bg-gradient-to-r from-neon-cyan to-neon-magenta bg-clip-text text-transparent">Digital Excellence</span> with Precision
+              Kaushik John <span className="bg-gradient-to-r from-neon-cyan to-neon-magenta bg-clip-text text-transparent">Emmanuel Daniel</span>
             </h1>
-            <p className="mt-6 text-lg text-gray-400 max-w-xl">
-              Freelance Full-Stack Developer & WordPress Specialist. I build high-performing business websites and integrate cutting-edge AI solutions.
+            <p className="mt-6 text-xl text-white font-medium">
+              Freelance Full-Stack Developer & WordPress Specialist
+            </p>
+            <p className="mt-4 text-lg text-gray-400 max-w-xl">
+              I build high-performing business websites and integrate cutting-edge AI solutions like Google AI Studio workflows.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
@@ -56,7 +60,7 @@ const Hero = () => {
               <div className="relative w-full h-full rounded-3xl overflow-hidden border border-neon-cyan/50 shadow-[0_0_15px_rgba(0,243,255,0.3)]">
                 <Image
                   src="/profile.jpg"
-                  alt="Developer Profile"
+                  alt="Kaushik John Emmanuel Daniel"
                   fill
                   sizes="(max-width: 768px) 320px, 384px"
                   className="object-cover"
@@ -81,44 +85,6 @@ const Hero = () => {
 };
 
 const SocialLinks = () => {
-  const socials = [
-    {
-      name: 'GitHub',
-      icon: Github,
-      link: '#',
-      description: 'Review my code & contributions',
-      hoverColor: 'group-hover:text-white',
-    },
-    {
-      name: 'Upwork',
-      icon: Briefcase,
-      link: '#',
-      description: 'Hire me for fixed/hourly projects',
-      hoverColor: 'group-hover:text-green-400',
-    },
-    {
-      name: 'Freelancer',
-      icon: Briefcase,
-      link: '#',
-      description: 'Find me on Freelancer.com',
-      hoverColor: 'group-hover:text-blue-400',
-    },
-    {
-      name: 'Reddit',
-      icon: MessageSquare,
-      link: '#',
-      description: 'Technical discussions',
-      hoverColor: 'group-hover:text-orange-400',
-    },
-    {
-      name: 'Discord',
-      icon: MessageSquare,
-      link: '#',
-      description: 'Real-time communication',
-      hoverColor: 'group-hover:text-indigo-400',
-    },
-  ];
-
   return (
     <section className="py-24 bg-zinc-950/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -126,8 +92,8 @@ const SocialLinks = () => {
           <h2 className="text-3xl md:text-4xl font-bold">Connect & Collaborate</h2>
           <p className="mt-4 text-gray-400">Available on professional platforms and social networks</p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-          {socials.map((social, index) => (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {SOCIAL_LINKS.map((social, index) => (
             <motion.a
               key={social.name}
               href={social.link}
@@ -159,17 +125,17 @@ const FeaturedServices = () => {
   const services = [
     {
       title: 'Full-Stack Development',
-      description: 'Building robust, scalable web applications using modern technologies.',
+      description: 'Building robust, scalable web applications using modern technologies like Next.js and Node.js.',
       icon: <Code2 className="w-10 h-10 text-neon-cyan" />,
     },
     {
       title: 'WordPress Specialist',
-      description: 'Custom themes, plugins, and high-performance WordPress solutions.',
+      description: 'Custom themes, plugins, and high-performance WordPress solutions tailored to your business.',
       icon: <Globe className="w-10 h-10 text-neon-magenta" />,
     },
     {
       title: 'AI Integration',
-      description: 'Implementing cutting-edge AI features into your web applications.',
+      description: 'Implementing cutting-edge AI features and Google AI Studio workflows into your web applications.',
       icon: <Cpu className="w-10 h-10 text-neon-lime" />,
     },
   ];

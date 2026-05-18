@@ -19,19 +19,17 @@ const Navbar = () => {
   return (
     <nav className="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
               <Image
                 src="/logo.png"
                 alt="KJED Logo"
-                width={40}
-                height={40}
-                className="w-auto h-10 object-contain"
+                width={150}
+                height={50}
+                className="h-12 w-auto object-contain"
+                priority
               />
-              <span className="ml-2 text-xl font-bold bg-gradient-to-r from-neon-cyan to-neon-magenta bg-clip-text text-transparent neon-text-cyan">
-                KJED
-              </span>
             </Link>
           </div>
           <div className="hidden md:block">
@@ -50,9 +48,9 @@ const Navbar = () => {
           <div className="hidden md:block">
             <Link
               href="/contact"
-              className="inline-flex items-center px-4 py-2 border border-neon-cyan text-sm font-medium rounded-full text-neon-cyan bg-transparent hover:bg-neon-cyan hover:text-black transition-all neon-glow-cyan"
+              className="inline-flex items-center px-6 py-2.5 border border-neon-cyan text-sm font-bold rounded-full text-neon-cyan bg-transparent hover:bg-neon-cyan hover:text-black transition-all neon-glow-cyan"
             >
-              Hire Me
+              Let's Build Something
             </Link>
           </div>
           <div className="md:hidden">
@@ -68,13 +66,13 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-black/95 backdrop-blur-lg">
+        <div className="md:hidden bg-black/95 backdrop-blur-lg border-b border-white/10">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                className="text-gray-300 hover:text-neon-cyan block px-3 py-2 rounded-md text-base font-medium"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}
@@ -82,10 +80,10 @@ const Navbar = () => {
             ))}
             <Link
               href="/contact"
-              className="w-full text-center inline-block px-4 py-2 border border-neon-cyan text-base font-medium rounded-md text-neon-cyan bg-transparent hover:bg-neon-cyan hover:text-black transition-all neon-glow-cyan"
+              className="w-full mt-4 text-center inline-block px-4 py-3 border border-neon-cyan text-base font-bold rounded-full text-neon-cyan bg-transparent hover:bg-neon-cyan hover:text-black transition-all neon-glow-cyan"
               onClick={() => setIsOpen(false)}
             >
-              Hire Me
+              Let's Build Something
             </Link>
           </div>
         </div>
