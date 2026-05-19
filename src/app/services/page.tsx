@@ -10,19 +10,19 @@ const ServiceCard = ({ title, description, icon: Icon, features, delay }: any) =
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ delay }}
     viewport={{ once: true }}
-    className="p-8 rounded-3xl bg-zinc-900/50 border border-white/10 hover:border-indigo-500/50 transition-all group"
+    className="p-8 rounded-3xl bg-zinc-900/50 border border-white/10 hover:border-neon-cyan transition-all group hover:shadow-[0_0_20px_rgba(0,243,255,0.1)]"
   >
     <div className="flex items-start justify-between mb-8">
-      <div className="p-4 rounded-2xl bg-indigo-500/10 text-indigo-400 group-hover:scale-110 transition-transform">
+      <div className="p-4 rounded-2xl bg-white/5 text-neon-cyan group-hover:neon-glow-cyan transition-all">
         <Icon size={32} />
       </div>
     </div>
-    <h3 className="text-2xl font-bold mb-4">{title}</h3>
+    <h3 className="text-2xl font-bold mb-4 group-hover:text-neon-cyan transition-colors">{title}</h3>
     <p className="text-gray-400 mb-8 leading-relaxed">{description}</p>
     <ul className="space-y-4">
       {features.map((feature: string, i: number) => (
         <li key={i} className="flex items-center gap-3 text-sm text-gray-300">
-          <CheckCircle2 className="text-indigo-500 w-5 h-5 flex-shrink-0" />
+          <CheckCircle2 className="text-neon-cyan w-5 h-5 flex-shrink-0" />
           {feature}
         </li>
       ))}
@@ -80,9 +80,9 @@ export default function ServicesPage() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-bold mb-6"
+            className="text-4xl md:text-5xl font-bold mb-6 neon-text-cyan"
           >
-            Specialized <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Digital Services</span>
+            Specialized <span className="bg-gradient-to-r from-neon-cyan to-neon-magenta bg-clip-text text-transparent">Digital Services</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -104,7 +104,7 @@ export default function ServicesPage() {
         {/* Technical Toolkit */}
         <div className="mt-32">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold">My Technical Toolkit</h2>
+            <h2 className="text-3xl font-bold neon-text-cyan">My Technical Toolkit</h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
@@ -113,9 +113,9 @@ export default function ServicesPage() {
               { icon: Layout, name: 'Front-end' },
               { icon: ShieldCheck, name: 'Security' },
             ].map((tech, i) => (
-              <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center gap-4">
-                <tech.icon className="w-8 h-8 text-indigo-400" />
-                <span className="font-medium text-gray-300">{tech.name}</span>
+              <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center gap-4 hover:border-neon-cyan transition-colors group">
+                <tech.icon className="w-8 h-8 text-neon-cyan group-hover:neon-glow-cyan transition-all" />
+                <span className="font-medium text-gray-300 group-hover:text-neon-cyan">{tech.name}</span>
               </div>
             ))}
           </div>

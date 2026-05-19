@@ -46,12 +46,13 @@ export default function AboutPage() {
             className="relative"
           >
             <div className="relative aspect-square max-w-md mx-auto">
-              <div className="absolute inset-0 bg-indigo-500 rounded-3xl rotate-6 opacity-20" />
-              <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/10">
+              <div className="absolute inset-0 bg-neon-cyan rounded-3xl rotate-6 opacity-20 neon-glow-cyan" />
+              <div className="relative w-full h-full rounded-3xl overflow-hidden border border-neon-cyan/30 shadow-[0_0_20px_rgba(0,243,255,0.2)]">
                 <Image
                   src="/profile.jpg"
-                  alt="Kaushik John Emmanuel Daniel"
+                  alt="Developer Profile"
                   fill
+                  sizes="(max-width: 768px) 100vw, 448px"
                   className="object-cover"
                 />
               </div>
@@ -62,7 +63,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
           >
-            <h1 className="text-4xl font-bold mb-6">About <span className="text-indigo-500">Kaushik John</span></h1>
+            <h1 className="text-4xl font-bold mb-6 neon-text-cyan">About <span className="text-neon-magenta neon-text-magenta">Me</span></h1>
             <p className="text-gray-400 text-lg mb-6 leading-relaxed">
               I am a self-taught and experienced freelancer based in India, specializing in Website Development,
               Designing, and technical troubleshooting. My journey in tech is driven by a passion for continuous
@@ -87,7 +88,7 @@ export default function AboutPage() {
         {/* My Values */}
         <div className="mb-32">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Core Principles</h2>
+            <h2 className="text-3xl font-bold mb-4 neon-text-cyan">Core Principles</h2>
             <p className="text-gray-400">What I bring to every collaboration</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -98,9 +99,9 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="p-8 rounded-3xl bg-zinc-900/50 border border-white/10 text-center"
+                className="p-8 rounded-3xl bg-zinc-900/50 border border-white/10 text-center hover:border-neon-cyan transition-all"
               >
-                <div className="inline-flex p-4 rounded-2xl bg-indigo-500/10 text-indigo-400 mb-6">
+                <div className="inline-flex p-4 rounded-2xl bg-white/5 text-neon-cyan mb-6 shadow-[0_0_10px_rgba(0,243,255,0.1)]">
                   <value.icon size={24} />
                 </div>
                 <h3 className="text-xl font-bold mb-4">{value.title}</h3>
@@ -113,8 +114,8 @@ export default function AboutPage() {
         {/* Experience / Education */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div>
-            <h2 className="text-2xl font-bold mb-8 flex items-center gap-3">
-              <Award className="text-indigo-500" />
+            <h2 className="text-2xl font-bold mb-8 flex items-center gap-3 neon-text-cyan">
+              <Award className="text-neon-cyan" />
               Specializations
             </h2>
             <div className="space-y-6">
@@ -131,8 +132,8 @@ export default function AboutPage() {
               ))}
             </div>
           </div>
-          <div className="bg-gradient-to-br from-indigo-900/20 to-purple-900/20 rounded-3xl p-8 border border-white/10 flex flex-col justify-center text-center">
-            <h2 className="text-3xl font-bold mb-6">Ready to start your next project?</h2>
+          <div className="bg-gradient-to-br from-neon-cyan/5 to-neon-magenta/5 rounded-3xl p-8 border border-white/10 flex flex-col justify-center text-center shadow-[inset_0_0_30px_rgba(0,243,255,0.05)]">
+            <h2 className="text-3xl font-bold mb-6 neon-text-magenta">Ready to start your next project?</h2>
             <p className="text-gray-400 mb-8 max-w-md mx-auto">
               I am always looking for exciting collaborations and high-impact projects. Let's discuss how I can help you achieve your goals.
             </p>
@@ -140,7 +141,7 @@ export default function AboutPage() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="/contact"
-              className="inline-block px-8 py-4 bg-indigo-600 text-white rounded-full font-bold transition-all mx-auto"
+              className="inline-block px-8 py-4 bg-transparent border-2 border-neon-cyan text-neon-cyan rounded-full font-bold transition-all mx-auto neon-glow-cyan hover:bg-neon-cyan hover:text-black"
             >
               Get In Touch
             </motion.a>

@@ -4,15 +4,16 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowRight, Code2, Globe, Cpu } from 'lucide-react';
+import { ArrowRight, Code2, Globe, Cpu, ExternalLink } from 'lucide-react';
+import { SOCIAL_LINKS } from '@/lib/constants';
 
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background decoration */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-[128px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-[128px]" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-cyan/10 rounded-full blur-[128px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-magenta/10 rounded-full blur-[128px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -22,16 +23,19 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-              Building <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Digital Excellence</span> with Precision
+            <h1 className="text-5xl md:text-7xl font-bold leading-tight neon-text-cyan">
+              Kaushik John <span className="bg-gradient-to-r from-neon-cyan to-neon-magenta bg-clip-text text-transparent">Emmanuel Daniel</span>
             </h1>
-            <p className="mt-6 text-lg text-gray-400 max-w-xl">
-              Freelance Full-Stack Developer & WordPress Specialist. I build high-performing business websites and integrate cutting-edge AI solutions.
+            <p className="mt-6 text-xl text-white font-medium">
+              Freelance Full-Stack Developer & WordPress Specialist
+            </p>
+            <p className="mt-4 text-lg text-gray-400 max-w-xl">
+              I build high-performing business websites and integrate cutting-edge AI solutions like Google AI Studio workflows.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 href="/contact"
-                className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-medium transition-all flex items-center gap-2 group"
+                className="px-8 py-4 bg-transparent border-2 border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-black rounded-full font-bold transition-all flex items-center gap-2 group neon-glow-cyan"
               >
                 Let's Build Something
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -52,26 +56,65 @@ const Hero = () => {
             className="relative"
           >
             <div className="relative w-80 h-80 md:w-96 md:h-96 mx-auto">
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-indigo-500 to-purple-500 rotate-6 opacity-20 animate-pulse" />
-              <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/10">
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-neon-cyan to-neon-magenta rotate-6 opacity-20 animate-pulse neon-glow-cyan" />
+              <div className="relative w-full h-full rounded-3xl overflow-hidden border border-neon-cyan/50 shadow-[0_0_15px_rgba(0,243,255,0.3)]">
                 <Image
                   src="/profile.jpg"
                   alt="Kaushik John Emmanuel Daniel"
                   fill
+                  sizes="(max-width: 768px) 320px, 384px"
                   className="object-cover"
                   priority
+                  loading="eager"
                 />
               </div>
 
               {/* Floating elements */}
-              <div className="absolute -top-6 -right-6 bg-black/50 backdrop-blur-md border border-white/10 p-4 rounded-2xl">
-                <Code2 className="w-8 h-8 text-indigo-400" />
+              <div className="absolute -top-6 -right-6 bg-black/50 backdrop-blur-md border border-neon-cyan/30 p-4 rounded-2xl neon-glow-cyan">
+                <Code2 className="w-8 h-8 text-neon-cyan" />
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-black/50 backdrop-blur-md border border-white/10 p-4 rounded-2xl">
-                <Globe className="w-8 h-8 text-purple-400" />
+              <div className="absolute -bottom-6 -left-6 bg-black/50 backdrop-blur-md border border-neon-magenta/30 p-4 rounded-2xl neon-glow-magenta">
+                <Globe className="w-8 h-8 text-neon-magenta" />
               </div>
             </div>
           </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const SocialLinks = () => {
+  return (
+    <section className="py-24 bg-zinc-950/50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold">Connect & Collaborate</h2>
+          <p className="mt-4 text-gray-400">Available on professional platforms and social networks</p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {SOCIAL_LINKS.map((social, index) => (
+            <motion.a
+              key={social.name}
+              href={social.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:border-neon-cyan transition-all flex flex-col items-center text-center group hover:shadow-[0_0_20px_rgba(0,243,255,0.1)]"
+            >
+              <div className={`p-4 rounded-2xl bg-white/5 text-gray-400 ${social.hoverColor} transition-colors mb-4`}>
+                <social.icon size={28} />
+              </div>
+              <h3 className="font-bold mb-1 group-hover:text-neon-cyan transition-colors">{social.name}</h3>
+              <p className="text-gray-500 text-[10px] mb-4 uppercase tracking-widest">{social.description}</p>
+              <div className="text-neon-cyan opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 text-xs font-medium">
+                Visit Profile <ExternalLink size={12} />
+              </div>
+            </motion.a>
+          ))}
         </div>
       </div>
     </section>
@@ -82,18 +125,18 @@ const FeaturedServices = () => {
   const services = [
     {
       title: 'Full-Stack Development',
-      description: 'Building robust, scalable web applications using modern technologies.',
-      icon: <Code2 className="w-10 h-10 text-indigo-500" />,
+      description: 'Building robust, scalable web applications using modern technologies like Next.js and Node.js.',
+      icon: <Code2 className="w-10 h-10 text-neon-cyan" />,
     },
     {
       title: 'WordPress Specialist',
-      description: 'Custom themes, plugins, and high-performance WordPress solutions.',
-      icon: <Globe className="w-10 h-10 text-purple-500" />,
+      description: 'Custom themes, plugins, and high-performance WordPress solutions tailored to your business.',
+      icon: <Globe className="w-10 h-10 text-neon-magenta" />,
     },
     {
       title: 'AI Integration',
-      description: 'Implementing cutting-edge AI features into your web applications.',
-      icon: <Cpu className="w-10 h-10 text-blue-500" />,
+      description: 'Implementing cutting-edge AI features and Google AI Studio workflows into your web applications.',
+      icon: <Cpu className="w-10 h-10 text-neon-lime" />,
     },
   ];
 
@@ -112,10 +155,10 @@ const FeaturedServices = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-indigo-500/50 transition-colors group"
+              className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-neon-cyan transition-all group hover:shadow-[0_0_20px_rgba(0,243,255,0.2)]"
             >
               <div className="mb-6 group-hover:scale-110 transition-transform">{service.icon}</div>
-              <h3 className="text-xl font-bold mb-4">{service.title}</h3>
+              <h3 className="text-xl font-bold mb-4 group-hover:text-neon-cyan transition-colors">{service.title}</h3>
               <p className="text-gray-400 leading-relaxed">{service.description}</p>
             </motion.div>
           ))}
@@ -131,6 +174,8 @@ export default function Home() {
       <Hero />
       <FeaturedServices />
 
+      <SocialLinks />
+
       {/* Brief About Section */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -142,7 +187,7 @@ export default function Home() {
                 custom WordPress solutions, and integrating cutting-edge AI features into web applications.
                 My toolkit spans full-stack development, tech troubleshooting, and SEO-driven copywriting.
               </p>
-              <Link href="/about" className="text-indigo-400 font-medium flex items-center gap-2 hover:text-indigo-300 transition-colors">
+              <Link href="/about" className="text-neon-cyan font-medium flex items-center gap-2 hover:neon-text-cyan transition-colors">
                 Learn more about my journey <ArrowRight className="w-5 h-5" />
               </Link>
             </div>

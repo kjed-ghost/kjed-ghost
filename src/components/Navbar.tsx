@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
@@ -18,10 +19,17 @@ const Navbar = () => {
   return (
     <nav className="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
-            <Link href="/" className="text-xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
-              KJED
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/logo.png"
+                alt="KJED Logo"
+                width={150}
+                height={50}
+                className="h-12 w-auto object-contain"
+                priority
+              />
             </Link>
           </div>
           <div className="hidden md:block">
@@ -30,7 +38,7 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                  className="text-gray-400 hover:text-neon-cyan px-3 py-2 rounded-md text-sm font-medium transition-colors hover:neon-text-cyan"
                 >
                   {link.name}
                 </Link>
@@ -40,9 +48,9 @@ const Navbar = () => {
           <div className="hidden md:block">
             <Link
               href="/contact"
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-indigo-600 hover:bg-indigo-700 transition-all"
+              className="inline-flex items-center px-6 py-2.5 border border-neon-cyan text-sm font-bold rounded-full text-neon-cyan bg-transparent hover:bg-neon-cyan hover:text-black transition-all neon-glow-cyan"
             >
-              Hire Me
+              Let's Build Something
             </Link>
           </div>
           <div className="md:hidden">
@@ -58,13 +66,13 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-black/95 backdrop-blur-lg">
+        <div className="md:hidden bg-black/95 backdrop-blur-lg border-b border-white/10">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                className="text-gray-300 hover:text-neon-cyan block px-3 py-2 rounded-md text-base font-medium"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}
@@ -72,10 +80,10 @@ const Navbar = () => {
             ))}
             <Link
               href="/contact"
-              className="w-full text-center inline-block px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+              className="w-full mt-4 text-center inline-block px-4 py-3 border border-neon-cyan text-base font-bold rounded-full text-neon-cyan bg-transparent hover:bg-neon-cyan hover:text-black transition-all neon-glow-cyan"
               onClick={() => setIsOpen(false)}
             >
-              Hire Me
+              Let's Build Something
             </Link>
           </div>
         </div>
