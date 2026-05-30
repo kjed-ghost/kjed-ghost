@@ -15,7 +15,7 @@ A stunning, modern, and highly responsive personal portfolio website built for K
 - **Neon Aesthetic:** High-ticket, modern dark mode design with neon glow effects.
 - **Responsive Design:** Optimized for all devices from mobile to ultra-wide monitors.
 - **Service Sections:** Dedicated layouts for Full-Stack Development, WordPress Specialization, and AI Integration.
-- **Social Connect:** Custom-designed cards for professional platforms (GitHub, Upwork, Freelancer, Reddit, Discord).
+- **Social Connect:** Custom-designed cards for professional platforms (GitHub, Upwork, Freelancer, and Reddit).
 - **Contact System:** Integrated contact form and direct contact information.
 
 ## Getting Started

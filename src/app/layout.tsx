@@ -3,6 +3,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
+import NeuralBackground from "@/components/interactivity/NeuralBackground";
+import CustomCursor from "@/components/interactivity/CustomCursor";
 
 export const metadata: Metadata = {
   title: "Kaushik John Emmanuel Daniel | Full-Stack Developer & WordPress Specialist",
@@ -19,9 +21,11 @@ export default function RootLayout({
       lang="en"
       className="h-full antialiased dark"
     >
-      <body className="min-h-full flex flex-col bg-black text-white font-sans">
+      <body className="min-h-full flex flex-col bg-black text-white font-sans overflow-x-hidden">
+        <CustomCursor />
+        <NeuralBackground />
         <Navbar />
-        <main className="flex-grow pt-16">
+        <main className="flex-grow pt-16 relative z-10">
           <PageTransition>
             {children}
           </PageTransition>

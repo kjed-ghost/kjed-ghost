@@ -2,31 +2,43 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Globe, Cpu, CheckCircle2, Server, Database, Layout, ShieldCheck } from 'lucide-react';
+import { Code2, Globe, Cpu, Sparkles, Server, Zap, Search, ShieldCheck } from 'lucide-react';
+import SpotlightCard from '@/components/interactivity/SpotlightCard';
 
-const ServiceCard = ({ title, description, icon: Icon, features, delay }: any) => (
+interface ServiceCardProps {
+  title: string;
+  description: string;
+  icon: React.ElementType;
+  delay: number;
+  color: string;
+}
+
+const ServiceCard = ({ title, description, icon: Icon, delay, color }: ServiceCardProps) => (
   <motion.div
-    initial={{ opacity: 0, y: 20 }}
+    initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
-    transition={{ delay }}
+    transition={{ delay, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     viewport={{ once: true }}
-    className="p-8 rounded-3xl bg-zinc-900/50 border border-white/10 hover:border-neon-cyan transition-all group hover:shadow-[0_0_20px_rgba(0,243,255,0.1)]"
   >
-    <div className="flex items-start justify-between mb-8">
-      <div className="p-4 rounded-2xl bg-white/5 text-neon-cyan group-hover:neon-glow-cyan transition-all">
-        <Icon size={32} />
+    <SpotlightCard className="group p-10 rounded-[40px] glass-panel border border-white/10 hover:border-white/20 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden h-full">
+      <div className={`absolute top-0 right-0 w-32 h-32 bg-${color}/10 blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity`} />
+
+      <div className={`mb-10 p-6 rounded-[24px] bg-black/40 border border-white/5 w-fit group-hover:scale-110 transition-all duration-500 shadow-2xl`}>
+        <Icon size={40} className={`text-${color}`} />
       </div>
-    </div>
-    <h3 className="text-2xl font-bold mb-4 group-hover:text-neon-cyan transition-colors">{title}</h3>
-    <p className="text-gray-400 mb-8 leading-relaxed">{description}</p>
-    <ul className="space-y-4">
-      {features.map((feature: string, i: number) => (
-        <li key={i} className="flex items-center gap-3 text-sm text-gray-300">
-          <CheckCircle2 className="text-neon-cyan w-5 h-5 flex-shrink-0" />
-          {feature}
-        </li>
-      ))}
-    </ul>
+
+      <h3 className="text-3xl font-black mb-6 tracking-tight group-hover:text-white transition-colors">{title}</h3>
+      <p className="text-gray-400 text-lg leading-relaxed font-medium mb-10">{description}</p>
+
+      <ul className="space-y-4">
+        {['Performance First', 'Scalable Architecture', 'Future-Proof Tech'].map((item, i) => (
+          <li key={i} className="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-gray-500 group-hover:text-gray-300 transition-colors">
+            <Zap size={14} className="text-neon-cyan" />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </SpotlightCard>
   </motion.div>
 );
 
@@ -34,91 +46,81 @@ export default function ServicesPage() {
   const services = [
     {
       title: 'Full-Stack Development',
-      description: 'Custom web applications built from the ground up using modern technologies. Focused on scalability, performance, and exceptional user experience.',
+      description: 'Architecting high-performance web applications with Next.js, React, and Node.js. Focused on hyperscale and absolute precision.',
       icon: Code2,
-      features: [
-        'React & Next.js Development',
-        'Node.js & Express Backends',
-        'Database Design (SQL/NoSQL)',
-        'RESTful & GraphQL API Integration',
-        'Performance Optimization',
-      ],
       delay: 0.1,
+      color: 'neon-cyan'
     },
     {
-      title: 'Custom WordPress Solutions',
-      description: 'Beyond basic templates. I create high-performing, custom-coded WordPress themes and plugins tailored to your specific business requirements.',
+      title: 'WordPress Specialist',
+      description: 'Custom theme and plugin development. I transform WordPress into a powerful, secure, and SEO-optimized business engine.',
       icon: Globe,
-      features: [
-        'Custom Theme Development',
-        'Plugin Customization & Building',
-        'E-commerce (WooCommerce) Setup',
-        'WordPress Security & Maintenance',
-        'SEO-driven Site Structure',
-      ],
       delay: 0.2,
+      color: 'neon-magenta'
     },
     {
-      title: 'AI Application Integration',
-      description: 'Leveraging cutting-edge AI technologies to automate workflows and enhance user interaction within your existing or new applications.',
+      title: 'AI Workflow Integration',
+      description: 'Bridging the gap between business logic and generative AI. Custom Google AI Studio workflows for automation.',
       icon: Cpu,
-      features: [
-        'Google AI Studio Workflows',
-        'LLM API Integrations',
-        'AI-driven Chatbots & Assistants',
-        'Content Generation Automation',
-        'Intelligent Data Analysis',
-      ],
       delay: 0.3,
+      color: 'neon-lime'
+    },
+    {
+      title: 'DevOps & Scalability',
+      description: 'Deploying robust infrastructures that grow with your business. Edge computing and serverless architectures.',
+      icon: Server,
+      delay: 0.4,
+      color: 'white'
+    },
+    {
+      title: 'Technical SEO',
+      description: 'Data-driven optimization that goes beyond keywords. Speed, accessibility, and structural excellence.',
+      icon: Search,
+      delay: 0.5,
+      color: 'neon-cyan'
+    },
+    {
+      title: 'Security Audits',
+      description: 'Ensuring your digital assets are bulletproof. Comprehensive troubleshooting and technical safeguarding.',
+      icon: ShieldCheck,
+      delay: 0.6,
+      color: 'neon-magenta'
     },
   ];
 
   return (
-    <div className="min-h-screen bg-black py-24">
+    <div className="min-h-screen bg-black py-32 noise-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="text-center mb-32">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-[0.2em] text-neon-cyan mb-8"
+          >
+            <Sparkles size={14} />
+            My Expertise
+          </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-bold mb-6 neon-text-cyan"
+            className="text-6xl md:text-9xl font-black mb-10 tracking-tighter"
           >
-            Specialized <span className="bg-gradient-to-r from-neon-cyan to-neon-magenta bg-clip-text text-transparent">Digital Services</span>
+            Technical <span className="text-neon-cyan">Mastery.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-gray-400"
+            className="text-2xl text-gray-500 max-w-3xl mx-auto font-medium"
           >
-            Delivering high-ticket freelance solutions for clients who demand technical competence,
-            reliability, and innovation.
+            Engineering robust solutions across the full digital spectrum, from core code to intelligent AI workflows.
           </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
+          {services.map((service) => (
             <ServiceCard key={service.title} {...service} />
           ))}
-        </div>
-
-        {/* Technical Toolkit */}
-        <div className="mt-32">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold neon-text-cyan">My Technical Toolkit</h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { icon: Server, name: 'Back-end Dev' },
-              { icon: Database, name: 'Databases' },
-              { icon: Layout, name: 'Front-end' },
-              { icon: ShieldCheck, name: 'Security' },
-            ].map((tech, i) => (
-              <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center gap-4 hover:border-neon-cyan transition-colors group">
-                <tech.icon className="w-8 h-8 text-neon-cyan group-hover:neon-glow-cyan transition-all" />
-                <span className="font-medium text-gray-300 group-hover:text-neon-cyan">{tech.name}</span>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </div>

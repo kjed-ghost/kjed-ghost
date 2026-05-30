@@ -4,9 +4,19 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -17,46 +27,49 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+    <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'py-4' : 'py-8'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className={`relative flex items-center justify-between transition-all duration-500 rounded-full px-6 py-3 ${scrolled ? 'bg-black/60 backdrop-blur-2xl border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)]' : ''}`}>
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
+            <Link href="/" className="flex items-center group">
               <Image
                 src="/logo.png"
                 alt="KJED Logo"
-                width={150}
-                height={50}
-                className="h-12 w-auto object-contain"
+                width={120}
+                height={40}
+                className="h-10 w-auto object-contain transition-transform group-hover:scale-110"
                 priority
               />
             </Link>
           </div>
+
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+            <div className="flex items-center space-x-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-gray-400 hover:text-neon-cyan px-3 py-2 rounded-md text-sm font-medium transition-colors hover:neon-text-cyan"
+                  className="text-gray-400 hover:text-white px-4 py-2 rounded-full text-sm font-black uppercase tracking-widest transition-all hover:bg-white/5"
                 >
                   {link.name}
                 </Link>
               ))}
             </div>
           </div>
+
           <div className="hidden md:block">
             <Link
               href="/contact"
-              className="inline-flex items-center px-6 py-2.5 border border-neon-cyan text-sm font-bold rounded-full text-neon-cyan bg-transparent hover:bg-neon-cyan hover:text-black transition-all neon-glow-cyan"
+              className="relative inline-flex items-center px-8 py-3 bg-neon-cyan text-black text-xs font-black uppercase tracking-widest rounded-full hover:scale-105 transition-all shadow-[0_0_20px_rgba(0,243,255,0.3)] hover:shadow-[0_0_30px_rgba(0,243,255,0.5)] active:scale-95"
             >
-              Let's Build Something
+              Hire Me
             </Link>
           </div>
+
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition-colors focus:outline-none"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -65,29 +78,38 @@ const Navbar = () => {
       </div>
 
       {/* Mobile menu */}
-      {isOpen && (
-        <div className="md:hidden bg-black/95 backdrop-blur-lg border-b border-white/10">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-gray-300 hover:text-neon-cyan block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <Link
-              href="/contact"
-              className="w-full mt-4 text-center inline-block px-4 py-3 border border-neon-cyan text-base font-bold rounded-full text-neon-cyan bg-transparent hover:bg-neon-cyan hover:text-black transition-all neon-glow-cyan"
-              onClick={() => setIsOpen(false)}
-            >
-              Let's Build Something
-            </Link>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute top-full left-0 w-full px-4 pt-2 pb-6 md:hidden"
+          >
+            <div className="bg-zinc-950 border border-white/10 rounded-[32px] p-6 shadow-2xl backdrop-blur-2xl">
+              <div className="space-y-2">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="text-gray-400 hover:text-neon-cyan block px-4 py-4 rounded-2xl text-lg font-black uppercase tracking-widest hover:bg-white/5 transition-all"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+                <Link
+                  href="/contact"
+                  className="w-full mt-6 text-center inline-block px-8 py-5 bg-neon-cyan text-black text-sm font-black uppercase tracking-widest rounded-2xl transition-all"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Hire Me
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

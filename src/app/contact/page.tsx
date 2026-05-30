@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Send, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
+import { Send, Mail, Phone, MapPin, ExternalLink, Sparkles } from 'lucide-react';
 import { SOCIAL_LINKS, SocialLink } from '@/lib/constants';
 
 interface SocialCardProps extends SocialLink {
@@ -14,112 +14,112 @@ const SocialCard: React.FC<SocialCardProps> = ({ name, icon: Icon, link, descrip
     href={link}
     target="_blank"
     rel="noopener noreferrer"
-    whileHover={{ y: -5 }}
-    className="p-6 rounded-3xl bg-zinc-900/50 border border-white/10 hover:border-neon-cyan/50 transition-all flex flex-col items-center text-center group hover:shadow-[0_0_20px_rgba(0,243,255,0.1)]"
+    whileHover={{ y: -10 }}
+    className="p-8 rounded-[40px] glass-panel border border-white/10 hover:border-neon-cyan/50 transition-all flex flex-col items-center text-center group hover:shadow-[0_0_30px_rgba(0,243,255,0.1)] relative overflow-hidden"
   >
-    <div className={`p-4 rounded-2xl bg-white/5 text-gray-400 ${hoverColor} transition-colors mb-4`}>
-      <Icon size={28} />
+    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
+    <div className={`p-6 rounded-2xl bg-black/40 text-gray-400 ${hoverColor} transition-all duration-500 mb-8 relative z-10`}>
+      <Icon size={40} />
     </div>
-    <h3 className="font-bold text-lg mb-1 group-hover:text-neon-cyan transition-colors">{name}</h3>
-    <p className="text-gray-500 text-xs mb-4">{description}</p>
-    <div className="text-neon-cyan opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 text-sm font-medium">
-      Connect <ExternalLink size={14} />
+    <h3 className="font-black text-2xl mb-2 group-hover:text-neon-cyan transition-colors relative z-10">{name}</h3>
+    <p className="text-gray-500 text-xs mb-8 uppercase tracking-widest font-bold relative z-10">{description}</p>
+    <div className="text-neon-cyan opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0 flex items-center gap-2 text-sm font-black uppercase tracking-widest relative z-10">
+      Connect <ExternalLink size={16} />
     </div>
   </motion.a>
 );
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-black py-24">
+    <div className="min-h-screen bg-black py-32 noise-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="text-center max-w-4xl mx-auto mb-32">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-[0.2em] text-neon-cyan mb-8"
+          >
+            <Sparkles size={14} />
+            Let&apos;s Collaborate
+          </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-bold mb-6 neon-text-cyan"
+            className="text-6xl md:text-9xl font-black mb-10 tracking-tighter"
           >
-            Let's <span className="bg-gradient-to-r from-neon-cyan to-neon-magenta bg-clip-text text-transparent">Connect</span>
+            Start a <span className="text-neon-cyan">Project.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-gray-400"
+            className="text-2xl text-gray-500 font-medium leading-relaxed"
           >
-            Have a project in mind or want to discuss a potential collaboration?
-            Reach out through any of the platforms below or send a direct message.
+            Ready to integrate cutting-edge AI or build a robust digital presence? I am currently accepting high-impact freelance projects.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-32">
           {/* Contact Info */}
           <div className="lg:col-span-1 space-y-8">
-            <div className="p-8 rounded-3xl bg-white/5 border border-neon-cyan/20">
-              <h2 className="text-2xl font-bold mb-8 neon-text-cyan">Direct Contact</h2>
-              <div className="space-y-6">
-                <div className="flex items-center gap-4 group">
-                  <div className="p-3 rounded-xl bg-white/5 text-neon-cyan group-hover:neon-glow-cyan transition-all">
-                    <Mail size={20} />
+            <div className="p-10 rounded-[48px] glass-panel border border-neon-cyan/20 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-neon-cyan/10 blur-[60px]" />
+              <h2 className="text-3xl font-black mb-10 tracking-tight">Direct <br /> Contact</h2>
+              <div className="space-y-8">
+                <div className="flex items-center gap-6 group">
+                  <div className="p-4 rounded-2xl bg-black/40 text-neon-cyan border border-white/5 group-hover:neon-glow-cyan transition-all">
+                    <Mail size={24} />
                   </div>
                   <div>
-                    <div className="text-xs text-gray-500 uppercase tracking-wider">Email</div>
-                    <div className="font-medium text-sm sm:text-base">kaushikdanielofficial@gmail.com</div>
+                    <div className="text-[10px] text-gray-500 uppercase tracking-widest font-black mb-1">Email</div>
+                    <div className="font-bold text-lg">kaushikdanielofficial@gmail.com</div>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 group">
-                  <div className="p-3 rounded-xl bg-white/5 text-neon-cyan group-hover:neon-glow-cyan transition-all">
-                    <Phone size={20} />
+                <div className="flex items-center gap-6 group">
+                  <div className="p-4 rounded-2xl bg-black/40 text-neon-cyan border border-white/5 group-hover:neon-glow-cyan transition-all">
+                    <Phone size={24} />
                   </div>
                   <div>
-                    <div className="text-xs text-gray-500 uppercase tracking-wider">WhatsApp</div>
-                    <div className="font-medium">+91 8601127306</div>
+                    <div className="text-[10px] text-gray-500 uppercase tracking-widest font-black mb-1">WhatsApp</div>
+                    <div className="font-bold text-lg">+91 8601127306</div>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 group">
-                  <div className="p-3 rounded-xl bg-white/5 text-neon-cyan group-hover:neon-glow-cyan transition-all">
-                    <MapPin size={20} />
+                <div className="flex items-center gap-6 group">
+                  <div className="p-4 rounded-2xl bg-black/40 text-neon-cyan border border-white/5 group-hover:neon-glow-cyan transition-all">
+                    <MapPin size={24} />
                   </div>
                   <div>
-                    <div className="text-xs text-gray-500 uppercase tracking-wider">Location</div>
-                    <div className="font-medium">India (Remote Worldwide)</div>
+                    <div className="text-[10px] text-gray-500 uppercase tracking-widest font-black mb-1">Location</div>
+                    <div className="font-bold text-lg">India (Remote)</div>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div className="p-8 rounded-3xl bg-zinc-900 border border-white/10">
-              <h3 className="font-bold mb-4">Typical Response Time</h3>
-              <p className="text-gray-400 text-sm">
-                I usually respond to inquiries within 24 hours during business days.
-              </p>
-            </div>
           </div>
 
-          {/* Contact Form Placeholder */}
+          {/* Contact Form */}
           <div className="lg:col-span-2">
-            <div className="p-8 md:p-12 rounded-3xl bg-zinc-900/50 border border-white/10 h-full">
-              <h2 className="text-2xl font-bold mb-8">Send a Message</h2>
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-400">Full Name</label>
-                    <input type="text" className="w-full px-4 py-3 rounded-xl bg-black border border-white/10 focus:border-neon-cyan outline-none transition-colors" placeholder="John Doe" />
+            <div className="p-10 md:p-16 rounded-[48px] glass-panel border border-white/10 h-full relative overflow-hidden">
+              <div className="absolute bottom-0 right-0 w-64 h-64 bg-neon-magenta/5 blur-[100px]" />
+              <h2 className="text-3xl font-black mb-10 tracking-tight">Send a Message</h2>
+              <form className="space-y-8 relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-3">
+                    <label className="text-xs font-black uppercase tracking-widest text-gray-500">Full Name</label>
+                    <input type="text" className="w-full px-6 py-4 rounded-2xl bg-black/40 border border-white/10 focus:border-neon-cyan outline-none transition-all font-medium text-lg" placeholder="John Doe" />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-400">Email Address</label>
-                    <input type="email" className="w-full px-4 py-3 rounded-xl bg-black border border-white/10 focus:border-neon-cyan outline-none transition-colors" placeholder="john@example.com" />
+                  <div className="space-y-3">
+                    <label className="text-xs font-black uppercase tracking-widest text-gray-500">Email Address</label>
+                    <input type="email" className="w-full px-6 py-4 rounded-2xl bg-black/40 border border-white/10 focus:border-neon-cyan outline-none transition-all font-medium text-lg" placeholder="john@example.com" />
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-400">Subject</label>
-                  <input type="text" className="w-full px-4 py-3 rounded-xl bg-black border border-white/10 focus:border-neon-cyan outline-none transition-colors" placeholder="How can I help you?" />
+                <div className="space-y-3">
+                  <label className="text-xs font-black uppercase tracking-widest text-gray-500">Message</label>
+                  <textarea rows={5} className="w-full px-6 py-4 rounded-2xl bg-black/40 border border-white/10 focus:border-neon-cyan outline-none transition-all font-medium text-lg" placeholder="Tell me about your project vision..."></textarea>
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-400">Message</label>
-                  <textarea rows={6} className="w-full px-4 py-3 rounded-xl bg-black border border-white/10 focus:border-neon-cyan outline-none transition-colors" placeholder="Tell me about your project..."></textarea>
-                </div>
-                <button type="submit" className="w-full py-4 bg-transparent border-2 border-neon-cyan text-neon-cyan rounded-xl font-bold transition-all flex items-center justify-center gap-2 neon-glow-cyan hover:bg-neon-cyan hover:text-black">
-                  Send Message <Send size={18} />
+                <button type="submit" className="w-full py-6 bg-neon-cyan text-black rounded-2xl font-black uppercase tracking-widest transition-all flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(0,243,255,0.2)] hover:scale-[1.02] active:scale-95">
+                  Secure Consultation <Send size={20} />
                 </button>
               </form>
             </div>
@@ -128,8 +128,10 @@ export default function ContactPage() {
 
         {/* Profile Links */}
         <div>
-          <h2 className="text-2xl font-bold text-center mb-12">Professional Platforms</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="mb-16">
+            <h2 className="text-4xl font-black tracking-tighter">Verified <span className="text-neon-magenta">Profiles.</span></h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {SOCIAL_LINKS.map((social, index) => (
               <SocialCard key={social.name} {...social} index={index} />
             ))}
