@@ -4,6 +4,8 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, Folder, Sparkles, ArrowRight } from 'lucide-react';
+import SpotlightCard from '@/components/interactivity/SpotlightCard';
+import Magnetic from '@/components/interactivity/Magnetic';
 
 interface Project {
   title: string;
@@ -19,51 +21,53 @@ const ProjectCard: React.FC<Project> = ({ title, description, tags, delay, featu
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ delay, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     viewport={{ once: true }}
-    className={`group relative glass-panel rounded-[40px] overflow-hidden border border-white/10 transition-all duration-500 hover:-translate-y-2 hover:border-neon-cyan/50 ${featured ? 'lg:col-span-2' : ''}`}
+    className={`${featured ? 'lg:col-span-2' : ''}`}
   >
-    <div className={`aspect-video bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center relative overflow-hidden`}>
-      <div className="absolute inset-0 bg-neon-cyan opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
-      <Folder className="w-20 h-20 text-neon-cyan opacity-10 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" />
+    <SpotlightCard className={`group relative glass-panel rounded-[40px] overflow-hidden border border-white/10 transition-all duration-500 hover:-translate-y-2 hover:border-neon-cyan/50 h-full`}>
+      <div className={`aspect-video bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center relative overflow-hidden`}>
+        <div className="absolute inset-0 bg-neon-cyan opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
+        <Folder className="w-20 h-20 text-neon-cyan opacity-10 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" />
 
-      {featured && (
-        <div className="absolute top-8 left-8 px-4 py-2 bg-neon-cyan text-black text-[10px] font-black uppercase tracking-[0.2em] rounded-full">
-          Featured Project
-        </div>
-      )}
-    </div>
-
-    <div className="p-10">
-      <div className="flex flex-wrap gap-2 mb-6">
-        {tags.map((tag) => (
-          <span key={tag} className="px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest text-gray-400 group-hover:text-white transition-colors">
-            {tag}
-          </span>
-        ))}
+        {featured && (
+          <div className="absolute top-8 left-8 px-4 py-2 bg-neon-cyan text-black text-[10px] font-black uppercase tracking-[0.2em] rounded-full">
+            Featured Project
+          </div>
+        )}
       </div>
-      <h3 className="text-3xl font-black mb-4 group-hover:text-neon-cyan transition-colors tracking-tight">{title}</h3>
-      <p className="text-gray-400 text-lg mb-10 leading-relaxed font-medium">
-        {description}
-      </p>
 
-      <div className="flex items-center gap-6">
-        <Link
-          href="/contact"
-          className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-white hover:text-neon-cyan transition-all group/link"
-        >
-          View Case Study
-          <ArrowRight size={18} className="group-hover/link:translate-x-2 transition-transform" />
-        </Link>
-        <div className="h-1 w-1 rounded-full bg-white/20" />
-        <div className="flex gap-4">
-          <button className="text-gray-500 hover:text-white transition-colors">
-            <Github size={22} />
-          </button>
-          <button className="text-gray-500 hover:text-white transition-colors">
-            <ExternalLink size={22} />
-          </button>
+      <div className="p-10">
+        <div className="flex flex-wrap gap-2 mb-6">
+          {tags.map((tag) => (
+            <span key={tag} className="px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest text-gray-400 group-hover:text-white transition-colors">
+              {tag}
+            </span>
+          ))}
+        </div>
+        <h3 className="text-3xl font-black mb-4 group-hover:text-neon-cyan transition-colors tracking-tight">{title}</h3>
+        <p className="text-gray-400 text-lg mb-10 leading-relaxed font-medium">
+          {description}
+        </p>
+
+        <div className="flex items-center gap-6">
+          <Link
+            href="/contact"
+            className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-white hover:text-neon-cyan transition-all group/link"
+          >
+            View Case Study
+            <ArrowRight size={18} className="group-hover/link:translate-x-2 transition-transform" />
+          </Link>
+          <div className="h-1 w-1 rounded-full bg-white/20" />
+          <div className="flex gap-4">
+            <button className="text-gray-500 hover:text-white transition-colors">
+              <Github size={22} />
+            </button>
+            <button className="text-gray-500 hover:text-white transition-colors">
+              <ExternalLink size={22} />
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </SpotlightCard>
   </motion.div>
 );
 
@@ -132,16 +136,18 @@ export default function ProjectsPage() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            <a
-              href="https://github.com/kjed-ghost"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group px-10 py-5 bg-white/5 border border-white/10 rounded-2xl flex items-center gap-4 hover:bg-white/10 transition-all font-black uppercase tracking-widest text-sm"
-            >
-              <Github size={24} />
-              GitHub Repository
-              <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
-            </a>
+            <Magnetic strength={0.2}>
+              <a
+                href="https://github.com/kjed-ghost"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group px-10 py-5 bg-white/5 border border-white/10 rounded-2xl flex items-center gap-4 hover:bg-white/10 transition-all font-black uppercase tracking-widest text-sm block"
+              >
+                <Github size={24} />
+                GitHub Repository
+                <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+              </a>
+            </Magnetic>
           </motion.div>
         </div>
 

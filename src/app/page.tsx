@@ -3,9 +3,12 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, Code2, Globe, Cpu, ExternalLink, Sparkles } from 'lucide-react';
 import { SOCIAL_LINKS } from '@/lib/constants';
+import SpotlightCard from '@/components/interactivity/SpotlightCard';
+import Magnetic from '@/components/interactivity/Magnetic';
+import GlitchText from '@/components/interactivity/GlitchText';
 
 const TypewriterText = () => {
   const words = useMemo(() => ['Full-Stack Developer', 'WordPress Specialist', 'AI Workflow Architect', 'UI/UX Enthusiast'], []);
@@ -41,8 +44,31 @@ const TypewriterText = () => {
 };
 
 const Hero = () => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const rotateX = useSpring(useTransform(y, [-300, 300], [10, -10]), { stiffness: 100, damping: 30 });
+  const rotateY = useSpring(useTransform(x, [-300, 300], [-10, 10]), { stiffness: 100, damping: 30 });
+
+  function handleMouse(event: React.MouseEvent<HTMLDivElement>) {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    x.set(event.clientX - centerX);
+    y.set(event.clientY - centerY);
+  }
+
+  function handleMouseLeave() {
+    x.set(0);
+    y.set(0);
+  }
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 noise-bg">
+    <section
+      onMouseMove={handleMouse}
+      onMouseLeave={handleMouseLeave}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 noise-bg"
+    >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.div
@@ -85,7 +111,7 @@ const Hero = () => {
             </motion.div>
 
             <h1 className="text-6xl md:text-8xl font-black leading-tight tracking-tighter">
-              Kaushik John <br />
+              <GlitchText text="Kaushik John" /> <br />
               <span className="bg-gradient-to-r from-neon-cyan via-white to-neon-magenta bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(0,243,255,0.3)]">
                 Emmanuel Daniel
               </span>
@@ -95,28 +121,32 @@ const Hero = () => {
               Expert <TypewriterText />
             </div>
 
-            <p className="mt-6 text-xl text-gray-400 max-w-xl leading-relaxed">
-              Architecting high-performance digital experiences and AI-driven workflows with technical precision and creative flair.
+            <p className="mt-6 text-xl text-gray-400 max-w-xl leading-relaxed font-medium">
+              Architecting <span className="text-white">high-performance</span> digital engines and AI-driven workflows with technical precision and creative flair.
             </p>
 
             <div className="mt-12 flex flex-wrap gap-6">
-              <Link
-                href="/contact"
-                className="group relative px-10 py-5 bg-transparent border-2 border-neon-cyan text-neon-cyan hover:text-black font-black uppercase tracking-widest transition-all rounded-xl overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-neon-cyan translate-y-full group-hover:translate-y-0 transition-transform duration-300 -z-10" />
-                <span className="flex items-center gap-3 relative z-10">
-                  Start a Project
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                </span>
-              </Link>
+              <Magnetic strength={0.3}>
+                <Link
+                  href="/contact"
+                  className="group relative px-10 py-5 bg-transparent border-2 border-neon-cyan text-neon-cyan hover:text-black font-black uppercase tracking-widest transition-all rounded-xl overflow-hidden block"
+                >
+                  <div className="absolute inset-0 bg-neon-cyan translate-y-full group-hover:translate-y-0 transition-transform duration-300 -z-10" />
+                  <span className="flex items-center gap-3 relative z-10">
+                    Start a Project
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                  </span>
+                </Link>
+              </Magnetic>
 
-              <Link
-                href="/projects"
-                className="px-10 py-5 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold uppercase tracking-widest rounded-xl transition-all flex items-center gap-2"
-              >
-                View Work
-              </Link>
+              <Magnetic strength={0.3}>
+                <Link
+                  href="/projects"
+                  className="px-10 py-5 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold uppercase tracking-widest rounded-xl transition-all flex items-center gap-2 block"
+                >
+                  View Work
+                </Link>
+              </Magnetic>
             </div>
           </motion.div>
 
@@ -124,9 +154,13 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
             className="relative"
           >
-            <div className="relative w-full max-w-[500px] aspect-square mx-auto">
+            <div
+              style={{ transform: "translateZ(50px)" }}
+              className="relative w-full max-w-[500px] aspect-square mx-auto"
+            >
               {/* Outer glow ring */}
               <div className="absolute -inset-4 bg-gradient-to-tr from-neon-cyan to-neon-magenta rounded-[40px] opacity-20 blur-2xl animate-pulse" />
 
@@ -149,7 +183,8 @@ const Hero = () => {
               <motion.div
                 animate={{ y: [0, -15, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-8 -right-8 glass-panel p-5 rounded-3xl neon-glow-cyan"
+                style={{ transform: "translateZ(80px)" }}
+                className="absolute -top-8 -right-8 glass-panel p-5 rounded-3xl neon-glow-cyan z-20"
               >
                 <Code2 className="w-10 h-10 text-neon-cyan" />
               </motion.div>
@@ -157,7 +192,8 @@ const Hero = () => {
               <motion.div
                 animate={{ y: [0, 15, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-8 -left-8 glass-panel p-5 rounded-3xl neon-glow-magenta"
+                style={{ transform: "translateZ(100px)" }}
+                className="absolute -bottom-8 -left-8 glass-panel p-5 rounded-3xl neon-glow-magenta z-20"
               >
                 <Globe className="w-10 h-10 text-neon-magenta" />
               </motion.div>
@@ -165,7 +201,8 @@ const Hero = () => {
               <motion.div
                 animate={{ scale: [1, 1.1, 1] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-1/2 -left-12 glass-panel p-4 rounded-2xl border-neon-lime/30"
+                style={{ transform: "translateZ(60px)" }}
+                className="absolute top-1/2 -left-12 glass-panel p-4 rounded-2xl border-neon-lime/30 z-20"
               >
                 <Cpu className="w-8 h-8 text-neon-lime" />
               </motion.div>
@@ -226,11 +263,11 @@ const ServiceBento = () => {
     <section className="py-32 bg-black relative noise-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-20">
-          <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter">
-            Specialized <span className="text-neon-cyan">Services</span>
+          <h2 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter">
+            Elite <span className="text-neon-cyan">Expertise.</span>
           </h2>
-          <p className="text-xl text-gray-500 max-w-2xl font-medium">
-            Cutting-edge technical solutions delivered with absolute reliability.
+          <p className="text-2xl text-gray-500 max-w-2xl font-medium">
+            Cutting-edge technical solutions delivered with <span className="text-white">absolute reliability</span> and architectural excellence.
           </p>
         </div>
 
@@ -242,17 +279,19 @@ const ServiceBento = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
-              className={`${service.size} group relative p-10 rounded-[32px] border border-white/10 ${service.bg} glass-panel transition-all duration-500 hover:-translate-y-2 ${service.borderColor}`}
+              className={`${service.size}`}
             >
-              <div className="mb-8 p-4 rounded-2xl bg-black/40 border border-white/5 w-fit group-hover:scale-110 transition-transform duration-500">
-                {service.icon}
-              </div>
-              <h3 className="text-2xl font-black mb-4 group-hover:text-white transition-colors">{service.title}</h3>
-              <p className="text-gray-400 text-lg leading-relaxed">{service.description}</p>
+              <SpotlightCard className={`group relative h-full p-10 rounded-[32px] border border-white/10 ${service.bg} glass-panel transition-all duration-500 hover:-translate-y-2 ${service.borderColor}`}>
+                <div className="mb-8 p-4 rounded-2xl bg-black/40 border border-white/5 w-fit group-hover:scale-110 transition-transform duration-500">
+                  {service.icon}
+                </div>
+                <h3 className="text-2xl font-black mb-4 group-hover:text-white transition-colors">{service.title}</h3>
+                <p className="text-gray-400 text-lg leading-relaxed">{service.description}</p>
 
-              <div className="mt-8 flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-white/40 group-hover:text-neon-cyan transition-colors">
-                Learn more <ArrowRight size={16} />
-              </div>
+                <div className="mt-8 flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-white/40 group-hover:text-neon-cyan transition-colors">
+                  Learn more <ArrowRight size={16} />
+                </div>
+              </SpotlightCard>
             </motion.div>
           ))}
         </div>

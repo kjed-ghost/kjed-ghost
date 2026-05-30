@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Code2, Globe, Cpu, Sparkles, Server, Zap, Search, ShieldCheck } from 'lucide-react';
+import SpotlightCard from '@/components/interactivity/SpotlightCard';
 
 interface ServiceCardProps {
   title: string;
@@ -18,25 +19,26 @@ const ServiceCard = ({ title, description, icon: Icon, delay, color }: ServiceCa
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ delay, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     viewport={{ once: true }}
-    className="group p-10 rounded-[40px] glass-panel border border-white/10 hover:border-white/20 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden"
   >
-    <div className={`absolute top-0 right-0 w-32 h-32 bg-${color}/10 blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity`} />
+    <SpotlightCard className="group p-10 rounded-[40px] glass-panel border border-white/10 hover:border-white/20 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden h-full">
+      <div className={`absolute top-0 right-0 w-32 h-32 bg-${color}/10 blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity`} />
 
-    <div className={`mb-10 p-6 rounded-[24px] bg-black/40 border border-white/5 w-fit group-hover:scale-110 transition-all duration-500 shadow-2xl`}>
-      <Icon size={40} className={`text-${color}`} />
-    </div>
+      <div className={`mb-10 p-6 rounded-[24px] bg-black/40 border border-white/5 w-fit group-hover:scale-110 transition-all duration-500 shadow-2xl`}>
+        <Icon size={40} className={`text-${color}`} />
+      </div>
 
-    <h3 className="text-3xl font-black mb-6 tracking-tight group-hover:text-white transition-colors">{title}</h3>
-    <p className="text-gray-400 text-lg leading-relaxed font-medium mb-10">{description}</p>
+      <h3 className="text-3xl font-black mb-6 tracking-tight group-hover:text-white transition-colors">{title}</h3>
+      <p className="text-gray-400 text-lg leading-relaxed font-medium mb-10">{description}</p>
 
-    <ul className="space-y-4">
-      {['Performance First', 'Scalable Architecture', 'Future-Proof Tech'].map((item, i) => (
-        <li key={i} className="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-gray-500 group-hover:text-gray-300 transition-colors">
-          <Zap size={14} className="text-neon-cyan" />
-          {item}
-        </li>
-      ))}
-    </ul>
+      <ul className="space-y-4">
+        {['Performance First', 'Scalable Architecture', 'Future-Proof Tech'].map((item, i) => (
+          <li key={i} className="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-gray-500 group-hover:text-gray-300 transition-colors">
+            <Zap size={14} className="text-neon-cyan" />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </SpotlightCard>
   </motion.div>
 );
 
