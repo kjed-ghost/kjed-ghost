@@ -20,8 +20,8 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'Services', href: '/services' },
-    { name: 'Projects', href: '/projects' },
+    { name: 'Solutions', href: '/services' },
+    { name: 'Portfolio', href: '/projects' },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ];
@@ -62,7 +62,7 @@ const Navbar = () => {
               href="/contact"
               className="relative inline-flex items-center px-8 py-3 bg-neon-cyan text-black text-xs font-black uppercase tracking-widest rounded-full hover:scale-105 transition-all shadow-[0_0_20px_rgba(0,243,255,0.3)] hover:shadow-[0_0_30px_rgba(0,243,255,0.5)] active:scale-95"
             >
-              Hire Me
+              Let&apos;s Build Something
             </Link>
           </div>
 
@@ -103,7 +103,7 @@ const Navbar = () => {
                   className="w-full mt-6 text-center inline-block px-8 py-5 bg-neon-cyan text-black text-sm font-black uppercase tracking-widest rounded-2xl transition-all"
                   onClick={() => setIsOpen(false)}
                 >
-                  Hire Me
+                  Let&apos;s Build Something
                 </Link>
               </div>
             </div>

@@ -5,15 +5,16 @@ import { motion } from 'framer-motion';
 import { Code2, Globe, Cpu, Sparkles, Server, Zap, Search, ShieldCheck } from 'lucide-react';
 import SpotlightCard from '@/components/interactivity/SpotlightCard';
 
-interface ServiceCardProps {
+interface SolutionCardProps {
   title: string;
   description: string;
   icon: React.ElementType;
   delay: number;
   color: string;
+  features: string[];
 }
 
-const ServiceCard = ({ title, description, icon: Icon, delay, color }: ServiceCardProps) => (
+const SolutionCard = ({ title, description, icon: Icon, delay, color, features }: SolutionCardProps) => (
   <motion.div
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -31,7 +32,7 @@ const ServiceCard = ({ title, description, icon: Icon, delay, color }: ServiceCa
       <p className="text-gray-400 text-lg leading-relaxed font-medium mb-10">{description}</p>
 
       <ul className="space-y-4">
-        {['Performance First', 'Scalable Architecture', 'Future-Proof Tech'].map((item, i) => (
+        {features.map((item, i) => (
           <li key={i} className="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-gray-500 group-hover:text-gray-300 transition-colors">
             <Zap size={14} className="text-neon-cyan" />
             {item}
@@ -42,49 +43,55 @@ const ServiceCard = ({ title, description, icon: Icon, delay, color }: ServiceCa
   </motion.div>
 );
 
-export default function ServicesPage() {
-  const services = [
+export default function SolutionsPage() {
+  const solutions = [
     {
-      title: 'Full-Stack Development',
-      description: 'Architecting high-performance web applications with Next.js, React, and Node.js. Focused on hyperscale and absolute precision.',
+      title: 'Industrial Full-Stack',
+      description: 'Architecting high-performance web applications that serve as the backbone of your enterprise. Precision-engineered with Next.js and Node.js.',
       icon: Code2,
       delay: 0.1,
-      color: 'neon-cyan'
+      color: 'neon-cyan',
+      features: ['Technical Dominance', 'Hyperscale Architecture', 'Absolute Precision']
     },
     {
-      title: 'WordPress Specialist',
-      description: 'Custom theme and plugin development. I transform WordPress into a powerful, secure, and SEO-optimized business engine.',
+      title: 'Proprietary WordPress',
+      description: 'Exclusive custom theme and plugin ecosystems. I transform WordPress into a powerful, secure, and SEO-dominant business asset.',
       icon: Globe,
       delay: 0.2,
-      color: 'neon-magenta'
+      color: 'neon-magenta',
+      features: ['Custom Engine', 'Zero Bloat', 'Strategic SEO']
     },
     {
-      title: 'AI Workflow Integration',
-      description: 'Bridging the gap between business logic and generative AI. Custom Google AI Studio workflows for automation.',
+      title: 'AI Workflow Systems',
+      description: 'Integrating Google AI Studio into your business logic to automate intelligence and create a significant market advantage.',
       icon: Cpu,
       delay: 0.3,
-      color: 'neon-lime'
+      color: 'neon-lime',
+      features: ['Strategic AI', 'Logic Automation', 'Predictive Workflows']
     },
     {
-      title: 'DevOps & Scalability',
-      description: 'Deploying robust infrastructures that grow with your business. Edge computing and serverless architectures.',
+      title: 'Architectural Audits',
+      description: 'In-depth analysis and performance hardening for elite digital infrastructures. I find the bottlenecks your team missed.',
       icon: Server,
       delay: 0.4,
-      color: 'white'
+      color: 'white',
+      features: ['Deep Optimization', 'Security Hardening', 'Uptime Excellence']
     },
     {
-      title: 'Technical SEO',
-      description: 'Data-driven optimization that goes beyond keywords. Speed, accessibility, and structural excellence.',
+      title: 'Search Dominance',
+      description: 'Engineering technical excellence that forces search engines to prioritize your platform. Beyond standard SEO.',
       icon: Search,
       delay: 0.5,
-      color: 'neon-cyan'
+      color: 'neon-cyan',
+      features: ['Core Web Vitals', 'Semantic Structure', 'Indexing Mastery']
     },
     {
-      title: 'Security Audits',
-      description: 'Ensuring your digital assets are bulletproof. Comprehensive troubleshooting and technical safeguarding.',
+      title: 'Strategic Consulting',
+      description: 'High-level advisory for visionary founders. Technical decision-making that aligns perfectly with business objectives.',
       icon: ShieldCheck,
       delay: 0.6,
-      color: 'neon-magenta'
+      color: 'neon-magenta',
+      features: ['Executive Clarity', 'Tech-Stack Strategy', 'Risk Mitigation']
     },
   ];
 
@@ -98,14 +105,14 @@ export default function ServicesPage() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-[0.2em] text-neon-cyan mb-8"
           >
             <Sparkles size={14} />
-            My Expertise
+            The Architectural Suite
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-6xl md:text-9xl font-black mb-10 tracking-tighter"
           >
-            Technical <span className="text-neon-cyan">Mastery.</span>
+            Elite <span className="text-neon-cyan">Architectures.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -113,13 +120,13 @@ export default function ServicesPage() {
             transition={{ delay: 0.1 }}
             className="text-2xl text-gray-500 max-w-3xl mx-auto font-medium"
           >
-            Engineering robust solutions across the full digital spectrum, from core code to intelligent AI workflows.
+            Engineering robust solutions that provide absolute technical certainty and market dominance for high-ticket ventures.
           </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
-            <ServiceCard key={service.title} {...service} />
+          {solutions.map((solution) => (
+            <SolutionCard key={solution.title} {...solution} />
           ))}
         </div>
       </div>

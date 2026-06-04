@@ -30,7 +30,7 @@ const ProjectCard: React.FC<Project> = ({ title, description, tags, delay, featu
 
         {featured && (
           <div className="absolute top-8 left-8 px-4 py-2 bg-neon-cyan text-black text-[10px] font-black uppercase tracking-[0.2em] rounded-full">
-            Featured Project
+            Flagship Architecture
           </div>
         )}
       </div>
@@ -53,7 +53,7 @@ const ProjectCard: React.FC<Project> = ({ title, description, tags, delay, featu
             href="/contact"
             className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-white hover:text-neon-cyan transition-all group/link"
           >
-            View Case Study
+            Examine Architecture
             <ArrowRight size={18} className="group-hover/link:translate-x-2 transition-transform" />
           </Link>
           <div className="h-1 w-1 rounded-full bg-white/20" />
@@ -74,27 +74,27 @@ const ProjectCard: React.FC<Project> = ({ title, description, tags, delay, featu
 export default function ProjectsPage() {
   const projects: Project[] = [
     {
-      title: 'Stitch - Full-Stack Platform',
-      description: 'A Next-Gen full-stack ecosystem built for hyperscale. Featuring real-time synchronization, edge computing, and streamlined developer workflows.',
+      title: 'Stitch - Industrial Ecosystem',
+      description: 'A Next-Gen full-stack architecture built for hyperscale organizations. Featuring real-time synchronization, edge computing, and streamlined enterprise workflows.',
       tags: ['Next.js', 'React', 'Node.js', 'PostgreSQL'],
       delay: 0.1,
       featured: true
     },
     {
       title: 'Google AI Studio Workflows',
-      description: 'Complex AI automation agents leveraging Google AI Studio for enterprise-grade content and logic orchestration.',
+      description: 'Complex AI automation agents leveraging Google AI Studio for enterprise-grade content and logic orchestration. Solving the bottleneck of manual operations.',
       tags: ['AI Studio', 'Python', 'LLMs', 'API'],
       delay: 0.2,
     },
     {
-      title: 'Advanced WordPress Engine',
-      description: 'Bespoke WordPress architectures for enterprise e-commerce with AI-driven personalization engines.',
+      title: 'Proprietary WordPress Engine',
+      description: 'Bespoke WordPress architectures for high-ticket e-commerce with AI-driven personalization engines. Technical exclusivity at its peak.',
       tags: ['WordPress', 'PHP', 'WooCommerce'],
       delay: 0.3,
     },
     {
-      title: 'Technical Copywriting Framework',
-      description: 'Proprietary SEO-driven framework for converting technical documentation into high-impact marketing assets.',
+      title: 'Strategic Copywriting Framework',
+      description: 'Proprietary SEO-driven framework for converting technical complexity into high-impact marketing assets that dominate the search landscape.',
       tags: ['SEO', 'Copywriting', 'Marketing'],
       delay: 0.4,
       featured: true
@@ -112,14 +112,14 @@ export default function ProjectsPage() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-[0.2em] text-neon-cyan mb-8"
             >
               <Sparkles size={14} />
-              Portfolio Showcase
+              The Architectural Portfolio
             </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="text-6xl md:text-8xl font-black mb-8 tracking-tighter"
             >
-              Selected <span className="text-neon-cyan">Works.</span>
+              Elite <span className="text-neon-cyan">Engines.</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -127,7 +127,7 @@ export default function ProjectsPage() {
               transition={{ delay: 0.1 }}
               className="text-2xl text-gray-500 font-medium leading-relaxed"
             >
-              A curation of projects defining technical excellence and modern digital strategy.
+              A curation of technical solutions defining absolute mastery and strategic digital dominance.
             </motion.p>
           </div>
 
@@ -144,7 +144,7 @@ export default function ProjectsPage() {
                 className="group px-10 py-5 bg-white/5 border border-white/10 rounded-2xl flex items-center gap-4 hover:bg-white/10 transition-all font-black uppercase tracking-widest text-sm block"
               >
                 <Github size={24} />
-                GitHub Repository
+                The Repository
                 <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
               </a>
             </Magnetic>
@@ -167,15 +167,15 @@ export default function ProjectsPage() {
           <div className="absolute top-0 right-0 p-10 opacity-20 rotate-12">
             <Sparkles size={120} className="text-neon-cyan" />
           </div>
-          <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter">Ready to Build the Future?</h2>
+          <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter">Acquire the Advantage.</h2>
           <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-            Let&apos;s leverage these technologies to create something exceptional for your business.
+            Let&apos;s leverage these architectural standards to create a decisive competitive edge for your business.
           </p>
           <Link
             href="/contact"
             className="inline-flex items-center gap-4 px-12 py-6 bg-neon-cyan text-black font-black uppercase tracking-widest rounded-2xl hover:scale-105 transition-all shadow-[0_0_30px_rgba(0,243,255,0.3)]"
           >
-            Let&apos;s Build Something
+            Request Collaboration
             <ArrowRight size={24} />
           </Link>
         </motion.div>

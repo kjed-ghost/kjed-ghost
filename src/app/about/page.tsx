@@ -8,10 +8,10 @@ import Link from 'next/link';
 
 export default function AboutPage() {
   const stats = [
-    { label: 'Yrs Exp', value: '3+' },
-    { label: 'Projects', value: '50+' },
-    { label: 'Satisfaction', value: '100%' },
-    { label: 'Geoloc', value: 'India' },
+    { label: 'Excellence', value: 'Elite' },
+    { label: 'Architectures', value: '50+' },
+    { label: 'Reliability', value: '100%' },
+    { label: 'Base', value: 'India' },
   ];
 
   return (
@@ -45,19 +45,19 @@ export default function AboutPage() {
             transition={{ duration: 1 }}
           >
             <h1 className="text-6xl md:text-8xl font-black mb-10 tracking-tighter leading-none">
-              The <span className="text-neon-cyan">Vision</span> Behind the Code.
+              The <span className="text-neon-cyan">Architect</span> Behind the Code.
             </h1>
             <p className="text-xl text-gray-400 mb-8 leading-relaxed font-medium">
-              I am a digital architect based in India, dedicated to the pursuit of technical perfection. My journey is built on the intersection of robust full-stack engineering and cutting-edge AI automation.
+              I am a digital architect based in India, providing technical dominance for visionary organizations. My practice is built on the intersection of industrial-grade engineering and strategic AI integration.
             </p>
             <p className="text-xl text-gray-400 mb-12 leading-relaxed font-medium">
-              For me, building websites isn&apos;t just about code—it&apos;s about creating high-performing business engines that deliver absolute reliability and competitive advantages.
+              I don&apos;t just build websites; I deliver the technical foundations that businesses are built upon. My mission is to provide absolute technical certainty in an uncertain digital landscape.
             </p>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
               {stats.map((stat) => (
                 <div key={stat.label} className="p-6 rounded-3xl glass-panel border border-white/5 text-center group hover:border-neon-cyan transition-all">
-                  <div className="text-3xl font-black text-white mb-1 group-hover:text-neon-cyan transition-colors">{stat.value}</div>
+                  <div className="text-2xl font-black text-white mb-1 group-hover:text-neon-cyan transition-colors uppercase tracking-tight">{stat.value}</div>
                   <div className="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-black">{stat.label}</div>
                 </div>
               ))}
@@ -68,25 +68,25 @@ export default function AboutPage() {
         {/* Values - Bento Grid Style */}
         <div className="mb-40">
           <div className="mb-20">
-            <h2 className="text-4xl md:text-6xl font-black tracking-tighter">Core <span className="text-neon-magenta">Values.</span></h2>
+            <h2 className="text-4xl md:text-6xl font-black tracking-tighter">The <span className="text-neon-magenta">Standards.</span></h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: 'Technical Competence',
-                desc: 'Architecture-first approach to writing maintainable and scalable logic.',
+                title: 'Technical Dominance',
+                desc: 'An uncompromising approach to architectural integrity and performance-driven logic.',
                 icon: Code,
                 color: 'text-neon-cyan'
               },
               {
                 title: 'Absolute Reliability',
-                desc: 'Consistency is key. Meeting the highest standards of professional reliability.',
+                desc: 'Consistency that fosters trust. I deliver results that exceed the expectations of elite clientele.',
                 icon: CheckCircle2,
                 color: 'text-white'
               },
               {
-                title: 'AI Innovation',
-                desc: 'Integrating the future of AI workflows to give your business a technical edge.',
+                title: 'Market Innovation',
+                desc: 'Integrating proprietary AI workflows and custom ecosystems to provide a decisive competitive edge.',
                 icon: Lightbulb,
                 color: 'text-neon-lime'
               }
@@ -119,16 +119,16 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-neon-cyan/10 via-transparent to-neon-magenta/10 opacity-50" />
           <div className="relative z-10 max-w-3xl mx-auto text-center">
             <h2 className="text-5xl md:text-8xl font-black mb-10 tracking-tighter leading-none">
-              Let&apos;s Architect <br /> <span className="text-neon-cyan">Success.</span>
+              Acquire <br /> <span className="text-neon-cyan">The Advantage.</span>
             </h2>
             <p className="text-xl text-gray-400 mb-12 font-medium">
-              Available for freelance collaborations and specialized technical consultations.
+              Strategic technical consultations and architectural engineering for visionary founders.
             </p>
             <Link
               href="/contact"
               className="inline-flex items-center gap-4 px-12 py-6 bg-neon-cyan text-black font-black uppercase tracking-widest rounded-2xl hover:scale-105 transition-all shadow-[0_0_30px_rgba(0,243,255,0.3)]"
             >
-              Get In Touch
+              Request Collaboration
               <ArrowRight size={24} />
             </Link>
           </div>
