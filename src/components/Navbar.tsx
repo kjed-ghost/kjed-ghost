@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { COMPANY_NAME } from '@/lib/constants';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -20,8 +21,8 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'Services', href: '/services' },
-    { name: 'Projects', href: '/projects' },
+    { name: 'Solutions', href: '/services' },
+    { name: 'The Vault', href: '/projects' },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ];
@@ -29,17 +30,21 @@ const Navbar = () => {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'py-4' : 'py-8'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`relative flex items-center justify-between transition-all duration-500 rounded-full px-6 py-3 ${scrolled ? 'bg-black/60 backdrop-blur-2xl border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)]' : ''}`}>
+        <div className={`relative flex items-center justify-between transition-all duration-500 rounded-full px-6 py-3.5 ${scrolled ? 'bg-black/60 backdrop-blur-2xl border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)]' : ''}`}>
+
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center group">
+            <Link href="/" className="flex items-center gap-3.5 group">
               <Image
                 src="/logo.png"
-                alt="KJED Logo"
+                alt={`${COMPANY_NAME} Logo`}
                 width={120}
                 height={40}
                 className="h-10 w-auto object-contain transition-transform group-hover:scale-110"
                 priority
               />
+              <span className="hidden sm:inline-block font-mono text-xs font-black tracking-[0.3em] text-white group-hover:text-neon-cyan transition-colors">
+                MONARCH
+              </span>
             </Link>
           </div>
 
@@ -49,7 +54,7 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-gray-400 hover:text-white px-4 py-2 rounded-full text-sm font-black uppercase tracking-widest transition-all hover:bg-white/5"
+                  className="text-gray-400 hover:text-white px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest transition-all hover:bg-white/5"
                 >
                   {link.name}
                 </Link>
@@ -60,9 +65,9 @@ const Navbar = () => {
           <div className="hidden md:block">
             <Link
               href="/contact"
-              className="relative inline-flex items-center px-8 py-3 bg-neon-cyan text-black text-xs font-black uppercase tracking-widest rounded-full hover:scale-105 transition-all shadow-[0_0_20px_rgba(0,243,255,0.3)] hover:shadow-[0_0_30px_rgba(0,243,255,0.5)] active:scale-95"
+              className="relative inline-flex items-center px-7 py-3 bg-neon-cyan text-black text-[10px] font-black uppercase tracking-widest rounded-full hover:scale-105 transition-all shadow-[0_0_20px_rgba(0,243,255,0.3)] hover:shadow-[0_0_30px_rgba(0,243,255,0.5)] active:scale-95"
             >
-              Hire Me
+              Secure License
             </Link>
           </div>
 
@@ -92,7 +97,7 @@ const Navbar = () => {
                   <Link
                     key={link.name}
                     href={link.href}
-                    className="text-gray-400 hover:text-neon-cyan block px-4 py-4 rounded-2xl text-lg font-black uppercase tracking-widest hover:bg-white/5 transition-all"
+                    className="text-gray-400 hover:text-neon-cyan block px-4 py-4 rounded-2xl text-base font-black uppercase tracking-widest hover:bg-white/5 transition-all"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.name}
@@ -100,10 +105,10 @@ const Navbar = () => {
                 ))}
                 <Link
                   href="/contact"
-                  className="w-full mt-6 text-center inline-block px-8 py-5 bg-neon-cyan text-black text-sm font-black uppercase tracking-widest rounded-2xl transition-all"
+                  className="w-full mt-6 text-center inline-block px-8 py-4.5 bg-neon-cyan text-black text-xs font-black uppercase tracking-widest rounded-2xl transition-all"
                   onClick={() => setIsOpen(false)}
                 >
-                  Hire Me
+                  Secure License
                 </Link>
               </div>
             </div>
